@@ -1,1 +1,4 @@
-[{"id":1,"productName":"Keyboard","description":"ffsdf"},{"id":2,"productName":"Mouse","description":"dsasd"},{"id":3,"productName":"dghdf","description":"sdfg"}]
+[
+  { "id": 1, "productName": "Speaker", "description": "Speaker", "price": "2" },
+  { "id": 2, "productName": "Mouse", "description": "Mouse", "price": "1" }
+]
