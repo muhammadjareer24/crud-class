@@ -88,7 +88,7 @@
     const deleteProduct = async () => {
       if (
         !confirm(
-          "Are you sure you want to delete your account? This action cannot be undone."
+          "Are you sure you want to delete your product? This action cannot be undone."
         )
       ) {
         return
@@ -98,10 +98,10 @@
       })
 
       if (res.redirected) {
-        alert("Account deleted successfully")
+        alert("Product deleted successfully")
         location.href = res.url
       } else {
-        alert("Failed to delete account")
+        alert("Failed to delete product")
       }
     }
   </script>

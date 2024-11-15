@@ -1,1 +1,38 @@
-[{"id":1,"fullName":"Muhammad Ahmar","email":"shammas2496@gmail.com","phone":"3142018065","password":"123456"},{"id":2,"fullName":"khan","email":"khan@gmail.com","phone":"3142018065","password":"1234566"},{"id":3,"fullName":"sdf","email":"shammas2496@gmail.com","phone":"3142018065","password":"asdssd"}]
+[
+  {
+    "id": 1,
+    "fullName": "Muhammad Ahmar",
+    "email": "shammas2496@gmail.com",
+    "phone": "3142018065",
+    "password": "123456"
+  },
+  {
+    "id": 4,
+    "fullName": "Osama",
+    "email": "osama@gmail.com",
+    "phone": "1234567890",
+    "password": "123444"
+  },
+  { "id": 6, "fullName": "Amjad", "email": "Ajad@gmail.com" },
+  {
+    "id": 8,
+    "fullName": "Lubna",
+    "email": "Lubna@gmail.com",
+    "phone": "3142018065",
+    "password": "1222221"
+  },
+  {
+    "id": 9,
+    "fullName": "Meera",
+    "email": "Hira@gmail.com",
+    "phone": "3142018065",
+    "password": "3333333333333"
+  },
+  {
+    "id": 14,
+    "fullName": "jareer",
+    "email": "jareer@gmail.com",
+    "phone": "123",
+    "password": "123"
+  }
+]

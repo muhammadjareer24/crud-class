@@ -18,7 +18,11 @@
         <% products.forEach((product)=> { %>
         <li>
           <span><%= product.productName %></span>
-          <a class="text-xs text-blue-600" href="/products/<%= product.id %>">View</a>
+          <a
+            class="text-xs text-blue-600"
+            href="/products/<%= product.productName %>"
+            >View</a
+          >
         </li>
         <% }) %>
       </ul>
