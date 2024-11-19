@@ -4,44 +4,53 @@ import {
   addUser,
   updateUser,
   deleteUser,
-} from "../../models/users"
+} from "../../models/users.js"
 
-async function getAll(req, res) {
-  const users = await getAllUsers()
-  res.json(users)
+async function showHomePage(req, res) {
+  res.render("index")
+}
+async function showRegister(req, res) {
+  res.render("users/register")
 }
 
-async function getOne(req, res) {
+async function showDashboard(req, res) {
+  const users = await getAllUsers()
+  res.render("users/dashboard", { users })
+}
+
+async function showProfile(req, res) {
   const user = await getUserById(Number(req.params.id))
 
   if (!user) return res.status(404).json({ error: "User not found!" })
-  res.json(user)
+  res.render("users/profile", { user })
 }
 
-async function create(req, res) {
+async function register(req, res) {
   const newUser = await addUser(req.body)
 
-  res.status(201).json({ status: "Success", user: newUser })
+  res.redirect("/dashboard")
 }
 
 async function update(req, res) {
   const updatedUser = await updateUser(Number(req.params.id), req.body)
 
   if (!updatedUser) return res.status(404).json({ error: "User not found" })
-  res.json({ status: "Updated", user: updatedUser })
+  res.redirect("/dashboard")
 }
 
 async function remove(req, res) {
   const deletedUser = await deleteUser(Number(req.params.id))
 
   if (!deletedUser) return res.status(404).json({ error: "User not found" })
-  res.json({ status: "Updated", user: deletedUser })
+  res.redirect("/dashboard")
 }
 
-module.exports = {
-  getAll,
-  getOne,
-  create,
+export {
+  showHomePage,
+  showRegister,
+  showDashboard,
+  showProfile,
+  register,
   update,
   remove,
 }

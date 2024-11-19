@@ -1,10 +1,22 @@
 import express from "express"
-import { getAll, getOne } from "../../controllers/web/users.js" // Example: Assume separate web controllers
+import {
+  showHomePage,
+  showRegister,
+  showDashboard,
+  showProfile,
+  register,
+  update,
+  remove,
+} from "../../controllers/web/users.js"
 
 const router = express.Router()
 
-router.get("/", (req, res) => res.render("index")) // Homepage
-router.get("/dashboard", getAll) // Render dashboard
-router.get("/users/:id", getOne) // Render user profile
+router.get("/", showHomePage)
+router.get("/dashboard", showDashboard)
+router.get("/register", showRegister)
+router.get("/users/:id", showProfile)
+router.post("/users", register)
+router.patch("/users/:id", update)
+router.delete("/users/:id", remove)
 
 export default router

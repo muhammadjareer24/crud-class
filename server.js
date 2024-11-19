@@ -1,111 +1,31 @@
 import express from "express"
+import path from "path"
+
+import usersApiRoutes from "./routes/api/users.js"
+import usersWebRoutes from "./routes/web/users.js"
+
+const app = express()
 
 app.set("view engine", "ejs")
+app.set("views", path.resolve("views"))
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(express.static("public"))
 
-let id = 0
+// Routes
+app.use("/api/users", usersApiRoutes)
+app.use("/", usersWebRoutes)
+
+app.listen(8000, () => console.log("Server started at PORT 8000"))
 
 //-Web Page Routes - USER
 
-// Show home page
-app.get("/", (req, res) => {
-  res.render("index")
-})
-
-// Show registration form
-app.get("/register", (req, res) => {
-  res.render("register")
-})
-
-// Save registration details and redirect to dashboard
-app.post("/users", (req, res) => {
-  const { fullName, email, phone, password } = req.body
-
-  fs.readFile("users.json", "utf-8", (err, data) => {
-    const users = JSON.parse(data)
-
-    const user = {
-      id: users.length + 1,
-      fullName,
-      email,
-      phone,
-      password,
-    }
-
-    users.push(user)
-
-    fs.writeFile("users.json", JSON.stringify(users), () => {})
-
-    res.redirect("/dashboard")
-  })
-})
-
-// Show Dashboard with saved user details
-app.get("/dashboard", (req, res) => {
-  fs.readFile("users.json", "utf-8", (err, data) => {
-    const users = JSON.parse(data)
-
-    res.render("dashboard", { users })
-  })
-})
-
-// Show profile page with the details of a particular user
-app.get("/users/:id", (req, res) => {
-  fs.readFile("users.json", "utf-8", (err, data) => {
-    const users = JSON.parse(data)
-
-    const id = Number(req.params.id)
-    const user = users.find((user) => user.id === id)
-
-    res.render("profile", { user })
-  })
-})
-
-// Change the details of a user and save the updated info. Then redirect to Dashboard
-app.patch("/users/:id", (req, res) => {
-  const { fullName, email, phone, password } = req.body
-
-  fs.readFile("users.json", "utf-8", (err, data) => {
-    const users = JSON.parse(data)
-    const id = Number(req.params.id)
-
-    const userIndex = users.findIndex((user) => user.id === id)
-
-    users[userIndex] = {
-      ...users[userIndex],
-      fullName: fullName || users[userIndex].fullName,
-      email: email || users[userIndex].email,
-      phone: phone || users[userIndex].phone,
-      password: password || users[userIndex].password,
-    }
-
-    fs.writeFile("users.json", JSON.stringify(users), () => {
-      if (err) {
-        return res.status(500).send("Error updating user data.")
-      }
-
-      res.redirect("/dashboard")
-    })
-  })
-})
-
-app.delete("/users/:id", (req, res) => {
-  fs.readFile("users.json", "utf-8", (err, data) => {
-    const users = JSON.parse(data)
-    const id = Number(req.params.id)
-    const userIndex = users.findIndex((user) => user.id === id)
-
-    users.splice(userIndex, 1)
-
-    fs.writeFile("users.json", JSON.stringify(users), (err) => {
-      res.redirect("/dashboard")
-    })
-  })
-})
+// MVC -done
 
 //- API Routes - USER
+
+// MVC -done
 
 //- *******************************************************************
 

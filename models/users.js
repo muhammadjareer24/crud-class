@@ -1,7 +1,7 @@
 import fs from "fs/promises"
 import path from "path"
 
-const filePath = path.resolve("data/user.json")
+const filePath = path.resolve("data/users.json")
 
 async function getAllUsers() {
   const data = await fs.readFile(filePath, "utf-8")
@@ -21,6 +21,7 @@ async function addUser(user) {
   await fs.writeFile(filePath, JSON.stringify(users, null, 2))
   return newUser
 }
+
 async function updateUser(id, updatedData) {
   const users = await getAllUsers()
   const userIndex = users.findIndex((user) => user.id === id)
@@ -36,13 +37,6 @@ async function deleteUser(id) {
   const [deletedUser] = users.splice(userIndex, 1)
 
   await fs.writeFile(filePath, JSON.stringify(users, null, 2))
-  return deleteUser
+  return deletedUser
 }
-
-module.exports = {
-  getAllUsers,
-  getUserById,
-  addUser,
-  updateUser,
-  deleteUser,
-}
+export { getAllUsers, getUserById, addUser, updateUser, deleteUser }

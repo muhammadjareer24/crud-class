@@ -4,7 +4,7 @@ import {
   addUser,
   updateUser,
   deleteUser,
-} from "../models/users"
+} from "../../models/users.js"
 
 async function getAll(req, res) {
   const users = await getAllUsers()
@@ -38,10 +38,4 @@ async function remove(req, res) {
   res.json({ status: "Updated", user: deletedUser })
 }
 
-module.exports = {
-  getAll,
-  getOne,
-  create,
-  update,
-  remove,
-}
+export { getAll, getOne, create, update, remove }
